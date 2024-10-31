@@ -1,0 +1,68 @@
+# Creating a fraction data type which will give output as 4/5.
+class Fraction:
+
+    # Creating the function with the constructor.
+    def __init__(self, n, d):
+        self.nom = n
+        self.den = d
+
+    # To print the fraction part we need to use __str__ method to print our unusual data type.
+    def __str__(self):
+        return "{}/{}".format(self.nom, self.den)
+    
+    # To do summation between two fraction and get the output as a fraction, we neet to use the __add__ method.    
+    def __add__(self, other):
+        temp_nom = self.nom * other.den + other.nom * self.den
+        temp_den = self.den * other.den
+        return "{}/{}".format(temp_nom, temp_den)
+    
+    # To do the substraction between two fractions and get the output as a fraction, we use __sub__ method.
+    def __sub__(self, other):
+        temp_nom = self.nom * other.den - other.nom * self.den
+        temp_den = self.den * other.den
+        return "{}/{}".format(temp_nom, temp_den)
+    
+    # To do multiplication between two fractions and get the output as a fraction, we use __mul__ method.
+    def __mul__(self, other):
+        temp_nom = self.nom * other.nom
+        temp_den = self.den * other.den
+        return "{}/{}".format(temp_nom, temp_den)
+    
+    # TO do division between two fractions and get the output as a fraction, we use __truediv__ method.
+    def __truediv__(self, other):
+        temp_nom = self.nom * other.den 
+        temp_den = self.den * other.nom
+        return "{}/{}".format(temp_nom, temp_den)
+    
+# Here I am getting the user input values.
+def get_fraction_input():
+    nom = int(input("Enter the Nominator: "))
+    den = int(input("Enter the Denominator: "))
+    return Fraction(nom, den)
+
+
+def main():
+    print("Enter the details for 1st fraction: ")
+    fraction_1 = get_fraction_input()
+
+    print("Enter the details for 2nd fraction: ")
+    fraction_2 = get_fraction_input()
+    
+
+    # Here I am doing all the calculations for testing purpose.
+    sum_fraction = (fraction_1 + fraction_2)
+    sub_fraction = (fraction_1 - fraction_2)
+    mul_fraction = (fraction_1 * fraction_2)
+    div_fraction = (fraction_1 / fraction_2)
+
+    # Printing all the outputs.
+    print("Your fraction_1 is :", fraction_1)
+    print("Your fraction_2 is :", fraction_2)
+    print("Sum of the fraction is:", sum_fraction)
+    print("Substraction of the fraction is:", sub_fraction)
+    print("Multiplication of the fraction is:", mul_fraction)
+    print("Division of the fraction is:", div_fraction)
+
+
+if __name__ == "__main__":
+    main()
